@@ -9,6 +9,21 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', ['$scope', '$http', 'redditService', 'favoriteService', 'moment', 'localStorageService', function($scope, $http, redditService, favoriteService, moment, localStorageService) {
+    
+    
+    $scope.favorite = function(post) {
+        favoriteService.setFavorite(post);
+    }
+    
+    $scope.unfavorite = function(title) {
+        favoriteService.removeFavorite(title);
+    }
+    
+    redditService.get()
+        .then(function(data) {
+            $scope.data = data.data.data.children;
+            console.log($scope.data);
+    });
+    
 }]);

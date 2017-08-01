@@ -9,6 +9,18 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
+.controller('View2Ctrl', ['$scope', '$http', 'favoriteService', 'localStorageService', function($scope, $http, favoriteService, localStorageService) {
+    
+    $scope.favorites = [];
+    
+    $scope.unfavorite = function(post) {
+        favoriteService.removeFavorite(post.data.title);
+        var index = $scope.favorites.indexOf(post);
+        $scope.favorites.splice(index, 1);
+    }
+    
+    favoriteService.getAllFavorites().forEach(function (title){
+        $scope.favorites.push(favoriteService.getFavorite(title));
+    });
+    
 }]);
