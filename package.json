@@ -19,6 +19,9 @@
     "karma-junit-reporter": "^0.4.1",
     "protractor": "^4.0.9"
   },
+  "resolutions": {
+      "angular": "1.6.5"
+  },    
   "scripts": {
     "postinstall": "bower install",
     "update-deps": "npm update",
